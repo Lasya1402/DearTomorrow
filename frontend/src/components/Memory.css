@@ -1,0 +1,63 @@
+/* Memory.css */
+.memory-container {
+    text-align: center;
+    padding: 50px;
+    background-color: #FDF7E3; /* Warm beige background */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.memory-container h2 {
+    font-size: 2rem;
+    font-family: "Cormorant Garamond", serif;
+    color: #FF6B35;
+    margin-bottom: 20px;
+}
+
+.memory-container p {
+    font-size: 1.2rem;
+    font-family: "Poppins", sans-serif;
+    color: #1E3D59;
+}
+
+.memory-container button {
+    font-size: 1.1rem;
+    font-family: "Poppins", sans-serif;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.memory-container .btn-primary {
+    background-color: #FFC857;
+    color: #1E3D59;
+}
+
+.memory-container .btn-primary:hover {
+    background-color: #FFA07A;
+}
+
+.memory-container .btn-secondary {
+    background-color: #FF6B35;
+    color: white;
+}
+
+.memory-container .btn-secondary:hover {
+    background-color: #FFA07A;
+}
+
+.memory-container a {
+    color: #FF6B35;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.memory-container a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,33 @@
+.navbar {
+    background-color: #FFC857 !important; /* Sunset Yellow */
+    padding: 1rem;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: #052642 !important; /* Deep Blue */
+  }
+  
+  .navbar-nav .nav-link {
+    font-size: 1.1rem;
+    color: #c14214 !important; /* Tangerine Orange */
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #1E3D59 !important; /* Deep Blue */
+  }
+  
+  .btn-danger {
+    background-color: #FF6B35 !important; /* Tangerine */
+    border: none;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .btn-danger:hover {
+    background-color: #E04D25 !important; /* Darker shade */
+  }
+  

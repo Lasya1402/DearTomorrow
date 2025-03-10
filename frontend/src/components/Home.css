@@ -1,0 +1,61 @@
+/* Full Page Container */
+.home-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background: linear-gradient(135deg, #FFC857, #FF914D, #FF6B35); /* Golden Hour Vibes */
+    color: #1E3D59;
+}
+
+/* Glassmorphism Box */
+.glass-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+   
+}
+
+/* Title Styling */
+.title {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 4rem;
+    font-weight: bold;
+   
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Subtitle */
+.subtitle {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5rem;
+    margin-top: 10px;
+    color: #FDF7E3; /* Soft warm beige */
+}
+
+.navbar-nav a {
+    font-size: 1.2rem;
+    color: #FDF7E3 !important;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.navbar-nav a:hover {
+    color: #FF6B35 !important;
+}
+
+
+/* Floating animation */
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+.glass-box {
+    animation: float 3s ease-in-out infinite;
+}

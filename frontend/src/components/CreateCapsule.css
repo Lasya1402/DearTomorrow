@@ -1,0 +1,68 @@
+/* CreateCapsule.css */
+.create-capsule-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: linear-gradient(135deg, #ffc857, #ff6b35, #ffa07a);
+  }
+  
+  .create-capsule-form {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+  }
+  
+  .create-capsule-form h2 {
+    font-family: "Poppins", sans-serif;
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #1E3D59;
+  }
+  
+  .create-capsule-form input,
+  .create-capsule-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .create-capsule-form textarea {
+    height: 80px;
+    resize: none;
+  }
+  
+  .create-capsule-form input[type="file"] {
+    border: none;
+    background: transparent;
+  }
+  
+  .create-capsule-form button {
+    background: #FF6B35;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .create-capsule-form button:hover {
+    background: #E65C30;
+  }
+  
+  .create-capsule-form input:focus,
+  .create-capsule-form textarea:focus {
+    border-color: #FF6B35;
+    outline: none;
+  }
+  
