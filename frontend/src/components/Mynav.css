@@ -1,8 +1,27 @@
 .navbar {
-    background-color: #FFC857 !important; /* Sunset Yellow */
-    padding: 1rem;
-    font-family: "Poppins", sans-serif;
-  }
+  background: linear-gradient(145deg, #e0e0e0, #a8a9ad, #6d6e71);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);  
+  padding: 1rem;
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 10px 20px;
+  height: 70px; /* Ensures consistent height */
+}
+
+.content {
+  padding-top: 80px; /* Push content down so it doesn't get hidden under fixed navbar */
+}
+
+/* Adjust when navbar is hidden */
+.no-navbar {
+  padding-top: 0;
+}
+
+  
   
   .navbar-brand {
     font-weight: bold;
@@ -12,14 +31,36 @@
   
   .navbar-nav .nav-link {
     font-size: 1.1rem;
-    color: #c14214 !important; /* Tangerine Orange */
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .navbar-nav .nav-link:hover {
+    color: #121212 !important; 
+    position: relative; /* Needed for the underline effect */
+    transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Hover Effects */
+.navbar-nav .nav-link:hover {
     color: #1E3D59 !important; /* Deep Blue */
-  }
-  
+    transform: scale(1.1); /* Slight zoom effect */
+}
+
+/* Underline Animation */
+.navbar-nav .nav-link::after {
+    content: "";
+    display: block;
+    width: 0%;
+    height: 2px;
+    background-color: #1E3D59; /* Deep Blue */
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-50%);
+}
+
+/* Expand Underline on Hover */
+.navbar-nav .nav-link:hover::after {
+    width: 100%;
+}
+
   .btn-danger {
     background-color: #FF6B35 !important; /* Tangerine */
     border: none;

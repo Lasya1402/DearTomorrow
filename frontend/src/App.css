@@ -5,6 +5,8 @@ body {
   padding: 20px;
 }
 
-h1 {
-  color: #ff9800; /* Orange */
+html, body {
+  height: 100%;
+  overflow-y: auto; /* Enable scrolling */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }

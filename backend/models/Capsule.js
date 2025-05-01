@@ -5,7 +5,6 @@ const capsuleSchema = new mongoose.Schema({
   email: { type: String, required: true },
   message: { type: String, required: true },
   link: { type: String },
-  file: { type: String },
   date: { type: String, required: true },
   time: { type: String, required: true },
 });

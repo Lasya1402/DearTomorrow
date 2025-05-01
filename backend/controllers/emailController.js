@@ -1,34 +1,17 @@
 const nodemailer = require("nodemailer");
 require("dotenv").config();
-const path = require("path");
-const fs = require("fs");
-const Capsule = require("../models/Capsule");
 
 const sendEmail = async (req, res) => {
     try {
-        const { capsuleId, to, subject, text, link } = req.body;
+        const { to, subject, text, link, links } = req.body;
 
-        // ✅ Fetch capsule from MongoDB
-        const capsule = await Capsule.findById(capsuleId);
-        if (!capsule) {
-            return res.status(404).json({ message: "Capsule not found" });
-        }
-
-        const filename = capsule.file; // Ensure correct field name
-        const filePath = filename ? path.join(__dirname, "../uploads", filename) : null;
-
-        let attachment = [];
-        if (filename && fs.existsSync(filePath)) {
-            const mimeType = filename.endsWith(".png") ? "image/png" : "image/jpeg";
-            attachment = [
-                {
-                    filename: filename,
-                    path: filePath,
-                    contentType: mimeType,
-                    cid: "attachedImage" // Inline image
-                }
-            ];
-        }
+        // ✅ Debugging logs (Check what’s coming in the request)
+        console.log("📩 Sending Email...");
+        console.log("📧 To:", to);
+        console.log("📌 Subject:", subject);
+        console.log("💬 Message:", text);
+        console.log("🔗 Link:", link);
+        console.log("🔗 Links Array:", links);
 
         // ✅ Setup email transporter
         const transporter = nodemailer.createTransport({
@@ -39,31 +22,39 @@ const sendEmail = async (req, res) => {
             }
         });
 
-        // ✅ Define mail options
+        // ✅ Format additional links (if provided)
+        let formattedLinks = "";
+        if (Array.isArray(links) && links.length > 0) {
+            formattedLinks = "<p><strong>Additional Links:</strong></p><ul>";
+            links.forEach(l => {
+                formattedLinks += `<li><a href="${l}" target="_blank">${l}</a></li>`;
+            });
+            formattedLinks += "</ul>";
+        }
+
+        // ✅ Define email content
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to,
             subject,
-            text: `${text || "No message provided."}\n\nAttachment: Check the uploaded file in your capsule.`,
+            text: `${text || "No message provided."}\n\nLink: ${link || "No link provided."}\n\nAdditional Links:\n${(links || []).join("\n")}`,
             html: `
                 <p>Dear ${to},</p>
                 <p>Your time capsule titled <strong>${subject}</strong> has unlocked!</p>
                 <p><strong>Message:</strong> ${text || "No message provided."}</p>
                 ${link ? `<p><strong>Link:</strong> <a href="${link}" target="_blank">${link}</a></p>` : ""}
-                <p><strong>Attachment:</strong> ${filename ? "Check your capsule below." : "No file was attached."}</p>
-                ${filename ? `<img src="cid:attachedImage" alt="Memory Image" style="max-width:100%; height:auto; border-radius:10px; margin-top:10px;"/>` : ""}
+                ${formattedLinks}
                 <p>Enjoy your memories! 💫</p>
-            `,
-            attachments: attachment
+            `
         };
 
         // ✅ Send email
         transporter.sendMail(mailOptions, (err, info) => {
             if (err) {
-                console.error("Error sending email:", err);
+                console.error("❌ Error sending email:", err);
                 return res.status(500).json({ message: "Email failed to send", error: err.message });
             }
-            console.log("Email sent:", info.response);
+            console.log("✅ Email sent:", info.response);
             res.status(200).json({ message: "Email sent successfully!" });
         });
 

@@ -23,6 +23,7 @@ const Memory = () => {
                     >
                         Create Capsule ✍️
                     </button>
+                    <br></br>
                     <button 
                         className="btn btn-secondary m-2"
                         onClick={handleLogout}

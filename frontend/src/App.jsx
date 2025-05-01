@@ -1,5 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./components/Home";
 import About from "./components/About";
 import Login from "./components/Login";
@@ -9,10 +8,17 @@ import CreateCapsule from "./components/CreateCapsule";
 import MyNav from "./components/Mynav";
 
 function App() {
+  return <AppContent />;
+}
+
+const AppContent = () => {
+  const location = useLocation();
+  const hideNavbarRoutes = ["/memory", "/create-capsule"]; // Hide navbar on these pages
+
   return (
-    <AuthProvider>
-      <Router>
-        <MyNav />
+    <div className="app-container">
+      {!hideNavbarRoutes.includes(location.pathname) && <MyNav />}
+      <div className={`content ${hideNavbarRoutes.includes(location.pathname) ? "no-navbar" : ""}`}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -21,9 +27,9 @@ function App() {
           <Route path="/memory" element={<Memory />} />
           <Route path="/create-capsule" element={<CreateCapsule />} />
         </Routes>
-      </Router>
-    </AuthProvider>
+      </div>
+    </div>
   );
-}
+};
 
 export default App;

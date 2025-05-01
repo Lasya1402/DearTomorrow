@@ -1,5 +1,6 @@
 const express = require("express");
 const { registerUser, loginUser, getUser } = require("../controllers/authController");
+
 const protect = require("../middleware/authMiddleware"); // ✅ Import middleware
 
 const router = express.Router();

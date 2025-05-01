@@ -2,10 +2,33 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+// Email validation function
+const isValidEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|org|net|edu|gov|in|co|io|dev)$/;
+    return emailRegex.test(email);
+};
+
+// Password validation function
+const isValidPassword = (password) => {
+    return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/.test(password);
+};
+
 // Register User
 const registerUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
+
+        // Validate email format
+        if (!isValidEmail(email)) {
+            return res.status(400).json({ message: "Invalid email format" });
+        }
+
+        // Validate password strength
+        if (!isValidPassword(password)) {
+            return res.status(400).json({ 
+                message: "Password must be at least 8 characters, include an uppercase letter, a number, and a special character." 
+            });
+        }
 
         const userExists = await User.findOne({ email });
         if (userExists) return res.status(400).json({ message: "User already exists" });
@@ -20,9 +43,15 @@ const registerUser = async (req, res) => {
     }
 };
 
+// Login User
 const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
+
+        // Validate email format
+        if (!isValidEmail(email)) {
+            return res.status(400).json({ message: "Invalid email format" });
+        }
 
         const user = await User.findOne({ email });
         if (!user) return res.status(400).json({ message: "User not found" });
@@ -35,7 +64,7 @@ const loginUser = async (req, res) => {
 
         res.json({
             message: "Login successful",
-            token,  // ✅ Now token is included
+            token,  
             user: {
                 _id: user._id,
                 name: user.name,
@@ -47,8 +76,7 @@ const loginUser = async (req, res) => {
     }
 };
 
-
-// Get User Data
+// ✅ Add back the missing `getUser` function
 const getUser = async (req, res) => {
     try {
         if (!req.user) {
@@ -67,4 +95,5 @@ const getUser = async (req, res) => {
     }
 };
 
+// ✅ Make sure to include `getUser` in module.exports
 module.exports = { registerUser, loginUser, getUser };

@@ -5,23 +5,16 @@ function About() {
   return (
     <div className="about-container">
       <div className="about-content">
-        <h1 className="about-title">About DearTomorrow</h1>
+        <h2 className="about-title">About DearTomorrow</h2>
         <p className="about-text">
-  Ever wished you could send a message to your future self? <br /><br />
-  <span className="highlight"> DearTomorrow </span> is your <strong>digital time capsule</strong>, where you can store memories, letters, and moments that will unlock at a future date.
-</p>
-
-        <p className="about-text">
-          Whether it's a note to yourself, a message for a loved one, or a dream you want to remember, 
-          this platform keeps your memories safe until the perfect time.
+          Ever wished to send a message to your future self?
+          <span className="highlight">DearTomorrow</span> is a <strong>digital time capsule</strong> where you can store memories and unlock them at the perfect moment.
         </p>
 
-        <h2 className="perks-title">✨ Why Use DearTomorrow?</h2>
+        <h2 className="perks-title">✨ Why Use It?</h2>
         <ul className="perks-list">
-          <li>📜 Preserve emotions & thoughts in their purest form.</li>
-          <li>🔓 Unlock special memories at just the right moment.</li>
-          <li>🌅 A nostalgic journey back to a different version of you.</li>
-          <li>💡 Self-reflection & growth through past experiences.</li>
+          <li>📜 Capture & relive cherished moments.</li>
+          <li>🔓 Unlock memories when the time is right.</li>
         </ul>
       </div>
     </div>
